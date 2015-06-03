@@ -2,8 +2,43 @@
 /* global require, module */
 
 var EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
+var fs = require('fs');
 
-var app = new EmberAddon();
+var entityMap = {
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': '&quot;',
+  "'": '&#39;',
+  "/": '&#x2F;'
+};
+function escapeHtml(string) {
+  return String(string).replace(/[&<>"'\/]/g, function (s) {
+    return entityMap[s];
+  });
+}
+
+var app = new EmberAddon({
+  /*
+   * Replace patterns. We use this to replace strings such as:
+   * @@{controllers/file.js}
+   * With the content of those files.
+   */
+  replace: {
+    files: [
+      '**/*.js'
+    ],
+    patterns: [{
+      match: /@@{([^}]*)}/g,
+      replacement: function(matchedText) {
+        filename = matchedText.slice(3, -1);
+        fullFilename = './tests/dummy/app/' + filename;
+        fileContents = fs.readFileSync(fullFilename, 'utf8');
+        return escapeHtml(fileContents).replace(/\n/g, '\\n');
+      }
+    }]
+  }
+});
 
 // Use `app.import` to add additional libraries to the generated
 // output files.
