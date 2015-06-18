@@ -80,12 +80,24 @@ define('dummy/templates/application', ['exports'], function (exports) {
 
   exports['default'] = Ember.HTMLBars.template((function() {
     return {
-      isHTMLBars: true,
-      revision: "Ember@1.12.1",
-      blockParams: 0,
+      meta: {
+        "revision": "Ember@1.13.2",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 4,
+            "column": 0
+          }
+        }
+      },
+      arity: 0,
       cachedFragment: null,
       hasRendered: false,
-      build: function build(dom) {
+      buildFragment: function buildFragment(dom) {
         var el0 = dom.createDocumentFragment();
         var el1 = dom.createElement("h2");
         dom.setAttribute(el1,"id","title");
@@ -100,30 +112,16 @@ define('dummy/templates/application', ['exports'], function (exports) {
         dom.appendChild(el0, el1);
         return el0;
       },
-      render: function render(context, env, contextualElement) {
-        var dom = env.dom;
-        var hooks = env.hooks, content = hooks.content;
-        dom.detectNamespace(contextualElement);
-        var fragment;
-        if (env.useFragmentCache && dom.canClone) {
-          if (this.cachedFragment === null) {
-            fragment = this.build(dom);
-            if (this.hasRendered) {
-              this.cachedFragment = fragment;
-            } else {
-              this.hasRendered = true;
-            }
-          }
-          if (this.cachedFragment) {
-            fragment = dom.cloneNode(this.cachedFragment, true);
-          }
-        } else {
-          fragment = this.build(dom);
-        }
-        var morph0 = dom.createMorphAt(fragment,2,2,contextualElement);
-        content(env, morph0, context, "outlet");
-        return fragment;
-      }
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(1);
+        morphs[0] = dom.createMorphAt(fragment,2,2,contextualElement);
+        return morphs;
+      },
+      statements: [
+        ["content","outlet"]
+      ],
+      locals: [],
+      templates: []
     };
   }()));
 
@@ -286,7 +284,7 @@ catch(err) {
 if (runningTests) {
   require("dummy/tests/test-helper");
 } else {
-  require("dummy/app")["default"].create({"LOG_ACTIVE_GENERATION":false,"LOG_VIEW_LOOKUPS":false,"rootElement":"#ember-testing","name":"base-ember-cli-addon","version":"0.0.0.d52389c9"});
+  require("dummy/app")["default"].create({"LOG_ACTIVE_GENERATION":false,"LOG_VIEW_LOOKUPS":false,"rootElement":"#ember-testing","name":"base-ember-cli-addon","version":"0.0.0.26eb6873"});
 }
 
 /* jshint ignore:end */
