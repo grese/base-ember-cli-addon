@@ -1,5 +1,5 @@
 # Base-ember-cli-addon
-
+[![Build Status](http://api.screwdriver.corp.yahoo.com:4080/badge/40276/component/icon)](http://api.screwdriver.corp.yahoo.com:4080/badge/40276/component/target)
 This README outlines the details of collaborating on this Ember addon.
 
 ## Installation

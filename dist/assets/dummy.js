@@ -150,7 +150,11 @@ define('dummy/tests/blanket-options', function () {
         loaderExclusions: [],
         enableCoverage: true,
         cliOptions: {
-            reporters: ["json"]
+            reporters: ["lcov"],
+            autostart: true,
+            lcovOptions: {
+                outputFile: "lcov.dat"
+            }
         }
     };
     if (typeof exports === "undefined") {
@@ -282,7 +286,7 @@ catch(err) {
 if (runningTests) {
   require("dummy/tests/test-helper");
 } else {
-  require("dummy/app")["default"].create({"name":"base-ember-cli-addon","version":"0.0.0.49537900"});
+  require("dummy/app")["default"].create({"LOG_ACTIVE_GENERATION":false,"LOG_VIEW_LOOKUPS":false,"rootElement":"#ember-testing","name":"base-ember-cli-addon","version":"0.0.0.d52389c9"});
 }
 
 /* jshint ignore:end */
