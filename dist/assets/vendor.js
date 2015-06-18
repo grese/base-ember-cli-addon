@@ -81463,7 +81463,75 @@ define("ember/load-initializers",
 }).call(this);
 
 
-;
+;define("base-ember-cli-addon", ["base-ember-cli-addon/index", "ember", "exports"], function(__index__, __Ember__, __exports__) {
+  "use strict";
+  __Ember__["default"].keys(__index__).forEach(function(key){
+    __exports__[key] = __index__[key];
+  });
+});
+
+define('base-ember-cli-addon/components/dummy-component', ['exports', 'ember', 'base-ember-cli-addon/templates/components/dummy-component'], function (exports, Ember, layout) {
+
+  'use strict';
+
+  exports['default'] = Ember['default'].Component.extend({
+    layout: layout['default']
+  });
+
+});
+define('base-ember-cli-addon/index', ['exports', 'ember'], function (exports, Em) {
+
+	'use strict';
+
+	exports['default'] = Em['default'].Component.extend();
+
+});
+define('base-ember-cli-addon/templates/components/dummy-component', ['exports'], function (exports) {
+
+  'use strict';
+
+  exports['default'] = Ember.HTMLBars.template((function() {
+    return {
+      meta: {
+        "revision": "Ember@1.13.2",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 2,
+            "column": 0
+          }
+        }
+      },
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(1);
+        morphs[0] = dom.createMorphAt(fragment,0,0,contextualElement);
+        dom.insertBoundary(fragment, 0);
+        return morphs;
+      },
+      statements: [
+        ["content","yield"]
+      ],
+      locals: [],
+      templates: []
+    };
+  }()));
+
+});
 ;/* jshint ignore:start */
 
 

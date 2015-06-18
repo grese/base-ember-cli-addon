@@ -21,6 +21,35 @@ define('dummy/app', ['exports', 'ember', 'ember/resolver', 'ember/load-initializ
   exports['default'] = App;
 
 });
+define('dummy/base-ember-cli-addon/tests/modules/base-ember-cli-addon/components/dummy-component.jshint', function () {
+
+  'use strict';
+
+  describe('JSHint - modules/base-ember-cli-addon/components/dummy-component.js', function () {
+    it('should pass jshint', function () {
+      expect(true, 'modules/base-ember-cli-addon/components/dummy-component.js should pass jshint.').to.be.ok;
+    });
+  });
+
+});
+define('dummy/base-ember-cli-addon/tests/modules/base-ember-cli-addon/index.jshint', function () {
+
+  'use strict';
+
+  describe('JSHint - modules/base-ember-cli-addon/index.js', function () {
+    it('should pass jshint', function () {
+      expect(true, 'modules/base-ember-cli-addon/index.js should pass jshint.').to.be.ok;
+    });
+  });
+
+});
+define('dummy/components/dummy-component', ['exports', 'base-ember-cli-addon'], function (exports, DummyComponent) {
+
+	'use strict';
+
+	exports['default'] = DummyComponent['default'].extend();
+
+});
 define('dummy/initializers/app-version', ['exports', 'dummy/config/environment', 'ember'], function (exports, config, Ember) {
 
   'use strict';
@@ -172,6 +201,16 @@ define('dummy/tests/blanket-options.jshint', function () {
   })});
 
 });
+define('dummy/tests/components/dummy-component.jshint', function () {
+
+  'use strict';
+
+  describe('JSHint - components/dummy-component.js', function(){
+  it('should pass jshint', function() { 
+    expect(true, 'components/dummy-component.js should pass jshint.').to.be.ok; 
+  })});
+
+});
 define('dummy/tests/helpers/resolver', ['exports', 'ember/resolver', 'dummy/config/environment'], function (exports, Resolver, config) {
 
   'use strict';
@@ -256,6 +295,36 @@ define('dummy/tests/test-helper.jshint', function () {
   })});
 
 });
+define('dummy/tests/unit/components/dummy-component-test', ['chai', 'ember-mocha'], function (chai, ember_mocha) {
+
+    'use strict';
+
+    /* jshint expr:true */
+    ember_mocha.describeComponent('dummy-component', 'DummyComponentComponent', {}, function () {
+        ember_mocha.it('should render a div.', function () {
+            // creates the component instance
+            var component = this.subject();
+            chai.expect(component._state).to.equal('preRender');
+
+            // renders the component on the page
+            this.render();
+            var $component = component.$();
+            chai.expect(component._state).to.equal('inDOM');
+            chai.expect($component.prop('tagName')).to.eq('DIV');
+        });
+    });
+
+});
+define('dummy/tests/unit/components/dummy-component-test.jshint', function () {
+
+  'use strict';
+
+  describe('JSHint - unit/components/dummy-component-test.js', function(){
+  it('should pass jshint', function() { 
+    expect(true, 'unit/components/dummy-component-test.js should pass jshint.').to.be.ok; 
+  })});
+
+});
 /* jshint ignore:start */
 
 /* jshint ignore:end */
@@ -284,7 +353,7 @@ catch(err) {
 if (runningTests) {
   require("dummy/tests/test-helper");
 } else {
-  require("dummy/app")["default"].create({"LOG_ACTIVE_GENERATION":false,"LOG_VIEW_LOOKUPS":false,"rootElement":"#ember-testing","name":"base-ember-cli-addon","version":"0.0.0.26eb6873"});
+  require("dummy/app")["default"].create({"LOG_ACTIVE_GENERATION":false,"LOG_VIEW_LOOKUPS":false,"rootElement":"#ember-testing","name":"base-ember-cli-addon","version":"0.0.0.1643003c"});
 }
 
 /* jshint ignore:end */
