@@ -39,6 +39,8 @@
     },
     "jobs": {
         "pull-request": {},
-        "component": {}
+        "component": {
+            "order": ["init", "lint", "test"]
+        }
     }
 }
