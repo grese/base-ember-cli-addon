@@ -9,8 +9,11 @@
   "scripts": {
       "start": "ember server",
       "build": "ember build",
-      "test": "ember test ci | tee results.tap",
-      "bower": "rm -rf .bower-*; node_modules/bower/bin/bower install"
+      "test": "ember test",
+      "test-ci": "mkdir -p ${TEST_RESULTS_DIR}/ && ember test ci | tee ${TEST_RESULTS_DIR}/results.tap",
+      "bower": "rm -rf .bower-*; node_modules/bower/bin/bower install",
+      "postinstall": "[ -f node_modules/bower/bin/bower ] && (npm run-script bower) || echo 'Bower not installed, skipping'",
+      "report-coverage": "mkdir -p ${COVERAGE_DIR}/lcov-report && genhtml ${SRC_DIR}/lcov.info -o ${COVERAGE_DIR}/lcov-report --no-source && cp ${SRC_DIR}/lcov.info ${COVERAGE_DIR}/lcov.info"
   },
   "repository": "git@git.corp.yahoo.com:grese/base-ember-cli-addon.git",
   "engines": {
@@ -66,7 +69,7 @@
   ],
   "dependencies": {
     "ember-cli-babel": "^5.0.0",
-    "ember-cli-htmlbars": "0.7.4"
+    "ember-cli-htmlbars": "0.7.9"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"

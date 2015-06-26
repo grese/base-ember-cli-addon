@@ -8,7 +8,7 @@
 /bower_components
 
 # misc
-/lcov.dat
+/lcov.info
 /.sass-cache
 /connect.lock
 /coverage/*
