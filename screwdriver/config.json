@@ -17,8 +17,9 @@
                 "task": "none"
             },
             "test": {
-                "task": "ynpm run-script test-ci",
                 "name": "Unit Tests",
+                "task": "script",
+                "command": "ynpm run-script test-ci",
                 "after": [
                     {
                         "task": "script",
@@ -38,7 +39,9 @@
         }
     },
     "jobs": {
-        "pull-request": {},
+        "pull-request": {
+            "order": ["init", "lint", "test"]
+        },
         "component": {
             "order": ["init", "lint", "test"]
         }
