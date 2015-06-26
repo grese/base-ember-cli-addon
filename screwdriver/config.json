@@ -23,7 +23,7 @@
                 "after": [
                     {
                         "task": "script",
-                        "command": "report-coverage"
+                        "command": "ynpm run-script report-coverage"
                     }
                 ]
             },
