@@ -9,7 +9,7 @@ var options = {
         reporters: ['lcov'],
         autostart: true,
         lcovOptions: {
-            outputFile: 'lcov.dat'
+            outputFile: 'lcov.info'
         }
     }
 };
