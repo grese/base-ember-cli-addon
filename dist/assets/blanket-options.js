@@ -1,4 +1,12 @@
 /*globals blanket, module */
+var isPhantom = (typeof exports !== 'undefined'),
+    coverageDir = './artifacts/coverage/',
+    coverageFile = 'lcov.info',
+    outputFile = coverageDir + coverageFile;
+
+if(isPhantom && process.env.COVERAGE_DIR){
+    outputFile = process.env.COVERAGE_DIR + '/' + coverageFile;
+}
 var options = {
     modulePrefix: "base-ember-cli-addon",
     filter: "//.*base-ember-cli-addon/.*/",
@@ -9,12 +17,12 @@ var options = {
         reporters: ['lcov'],
         autostart: true,
         lcovOptions: {
-            outputFile: 'lcov.dat'
+            outputFile: outputFile
         }
     }
 };
-if (typeof exports === 'undefined') {
-    blanket.options(options);
-} else {
+if(isPhantom){
     module.exports = options;
+}else{
+    blanket.options(options);
 }

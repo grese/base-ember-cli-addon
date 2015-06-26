@@ -121,7 +121,8 @@ define('dummy/templates/application', ['exports'], function (exports) {
             "line": 4,
             "column": 0
           }
-        }
+        },
+        "moduleName": "dummy/templates/application.hbs"
       },
       arity: 0,
       cachedFragment: null,
@@ -170,24 +171,32 @@ define('dummy/tests/blanket-options', function () {
     'use strict';
 
     /*globals blanket, module */
+    var isPhantom = typeof exports !== 'undefined',
+        coverageDir = './artifacts/coverage/',
+        coverageFile = 'lcov.info',
+        outputFile = coverageDir + coverageFile;
+
+    if (isPhantom && process.env.COVERAGE_DIR) {
+        outputFile = process.env.COVERAGE_DIR + '/' + coverageFile;
+    }
     var options = {
-        modulePrefix: "base-ember-cli-addon",
-        filter: "//.*base-ember-cli-addon/.*/",
-        antifilter: "//.*(tests|template).*/",
+        modulePrefix: 'base-ember-cli-addon',
+        filter: '//.*base-ember-cli-addon/.*/',
+        antifilter: '//.*(tests|template).*/',
         loaderExclusions: [],
         enableCoverage: true,
         cliOptions: {
-            reporters: ["lcov"],
+            reporters: ['lcov'],
             autostart: true,
             lcovOptions: {
-                outputFile: "lcov.dat"
+                outputFile: outputFile
             }
         }
     };
-    if (typeof exports === "undefined") {
-        blanket.options(options);
-    } else {
+    if (isPhantom) {
         module.exports = options;
+    } else {
+        blanket.options(options);
     }
 
 });
@@ -353,7 +362,7 @@ catch(err) {
 if (runningTests) {
   require("dummy/tests/test-helper");
 } else {
-  require("dummy/app")["default"].create({"LOG_ACTIVE_GENERATION":false,"LOG_VIEW_LOOKUPS":false,"rootElement":"#ember-testing","name":"base-ember-cli-addon","version":"0.0.0.1643003c"});
+  require("dummy/app")["default"].create({"LOG_ACTIVE_GENERATION":false,"LOG_VIEW_LOOKUPS":false,"rootElement":"#ember-testing","name":"base-ember-cli-addon","version":"0.0.0.64d99ee8"});
 }
 
 /* jshint ignore:end */

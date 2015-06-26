@@ -81504,7 +81504,8 @@ define('base-ember-cli-addon/templates/components/dummy-component', ['exports'],
             "line": 2,
             "column": 0
           }
-        }
+        },
+        "moduleName": "modules/base-ember-cli-addon/templates/components/dummy-component.hbs"
       },
       arity: 0,
       cachedFragment: null,
